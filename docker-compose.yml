@@ -18,7 +18,7 @@ services:
     volumes:
       - ./api:/srv/api:rw,cached
       # If you develop on Linux, uncomment the following line to use a bind-mounted host directory instead
-      # - ./api/var:/srv/api/var:rw
+      - ./api/var:/srv/api/var:rw
 
   api:
     image: ${CONTAINER_REGISTRY_BASE}/nginx
@@ -64,9 +64,9 @@ services:
       # You should definitely change the password in production
       - POSTGRES_PASSWORD=!ChangeMe!
     volumes:
-      - db-data:/var/lib/postgresql/data:rw
+      # - db-data:/var/lib/postgresql/data:rw
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
+      - ./docker/db/data:/var/lib/postgresql/data:rw
     ports:
       - "5432:5432"
 
@@ -81,7 +81,8 @@ services:
     env_file:
       - ./client/.env
     volumes:
-      - ./client:/usr/src/client:rw,cached
+      # - ./client:/usr/src/client:rw,cached
+      - .et/client:/usr/src/client:rw
       - /usr/src/client/node_modules
     ports:
       - "80:3000"
@@ -97,7 +98,8 @@ services:
     env_file:
       - ./admin/.env
     volumes:
-      - ./admin:/usr/src/admin:rw,cached
+      # - ./admin:/usr/src/admin:rw,cached
+      - ./admin:/usr/src/admin:rw
       - /usr/src/admin/node_modules
     ports:
       - "81:3000"
