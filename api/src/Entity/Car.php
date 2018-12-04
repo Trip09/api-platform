@@ -2,15 +2,21 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Serializer\Filter\PropertyFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * A Uber car avaialable to rent
  *
  * @ORM\Entity
- * @ApiResource()
+ * @ApiResource(iri= "http://schema.org/Car")
+ *
+ * @ApiFilter(PropertyFilter::class)
  */
 class Car
 {
@@ -30,6 +36,9 @@ class Car
      * A nice brand of the car
      *
      * @ORM\Column(type="string")
+     * @ApiProperty(iri= "https://schema.org/brand")
+     * @Groups({"ride:list:read"})
+     * @ApiFilter(SearchFilter::Class, strategy="ipartial")
      *
      * @var string
      */
@@ -38,6 +47,7 @@ class Car
     /**
      *
      * @ORM\Column(type="string")
+     * @Groups({"ride:list:read"})
      *
      * @var string
      */

@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Rider;
+use App\Entity\Ride;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Rider|null find($id, $lockMode = null, $lockVersion = null)
- * @method Rider|null findOneBy(array $criteria, array $orderBy = null)
- * @method Rider[]    findAll()
- * @method Rider[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Ride|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Ride|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Ride[]    findAll()
+ * @method Ride[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class RiderRepository extends ServiceEntityRepository
+class RideRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Rider::class);
+        parent::__construct($registry, Ride::class);
     }
 
     // /**
-    //  * @return Rider[] Returns an array of Rider objects
+    //  * @return Ride[] Returns an array of Ride objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class RiderRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Rider
+    public function findOneBySomeField($value): ?Ride
     {
         return $this->createQueryBuilder('r')
             ->andWhere('r.exampleField = :val')

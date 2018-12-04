@@ -2,14 +2,29 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Serializer\Filter\PropertyFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
- * @ORM\Entity(repositoryClass="App\Repository\RiderRepository")
+ * @ApiResource(
+ *     normalizationContext={
+ *          "groups": {"ride:list:read"}
+ *     },
+ *     itemOperations={
+ *              "get": {"normalizationContext": {"groups": {"ride:list:read"}}}
+ *          },
+ *     collectionOperations={"get"}
+ * )
+ * @ApiFilter(PropertyFilter::class)
+ * @ApiFilter(OrderFilter::class)
+ * @ORM\Entity(repositoryClass="App\Repository\RideRepository")
  */
-class Rider
+class Ride
 {
     /**
      * @ORM\Id()
@@ -20,11 +35,14 @@ class Rider
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"ride:list:read"})
+     * @ApiFilter(SearchFilter::Class, strategy="ipartial")
      */
     private $name;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Car")
+     * @Groups({"ride:list:read"})
      * @ORM\JoinColumn(name="car_id", referencedColumnName="id", nullable=false)
      */
     private $car;
@@ -47,7 +65,7 @@ class Rider
     }
 
     /**
-     * @return mixed
+     * @return Car
      */
     public function getCar(): ?Car
     {

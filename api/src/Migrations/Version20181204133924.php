@@ -17,7 +17,7 @@ final class Version20181204133924 extends AbstractMigration
 
         $this->addSql('DROP SEQUENCE greeting_id_seq CASCADE');
         $this->addSql('CREATE SEQUENCE rider_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
-        $this->addSql('CREATE TABLE rider (id INT NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE ride (id INT NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('DROP TABLE greeting');
     }
 
@@ -30,6 +30,6 @@ final class Version20181204133924 extends AbstractMigration
         $this->addSql('DROP SEQUENCE rider_id_seq CASCADE');
         $this->addSql('CREATE SEQUENCE greeting_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE TABLE greeting (id INT NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
-        $this->addSql('DROP TABLE rider');
+        $this->addSql('DROP TABLE ride');
     }
 }
