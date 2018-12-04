@@ -23,6 +23,12 @@ class Rider
      */
     private $name;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Car")
+     * @ORM\JoinColumn(name="car_id", referencedColumnName="id", nullable=false)
+     */
+    private $car;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -36,6 +42,26 @@ class Rider
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCar(): ?Car
+    {
+        return $this->car;
+    }
+
+    /**
+     * @param Car $car
+     *
+     * @return $this
+     */
+    public function setCar(Car $car): self
+    {
+        $this->car = $car;
 
         return $this;
     }

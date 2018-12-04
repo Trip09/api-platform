@@ -1,0 +1,10 @@
+App\Entity\Car:
+  car_{1..100}:
+    brand: '<company()>'
+    model: '<company()>'
+    plateNumber: '<uuid()>'
+
+App\Entity\Rider:
+  rider_{1..500}:
+    name: '<firstName()>'
+    car: '@car_<numberBetween(1, 100)>'
