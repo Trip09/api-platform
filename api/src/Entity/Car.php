@@ -14,7 +14,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * A Uber car avaialable to rent
  *
  * @ORM\Entity
- * @ApiResource(iri= "http://schema.org/Car")
+ * @ApiResource(
+ *     iri= "http://schema.org/Car"
+ * )
  *
  * @ApiFilter(PropertyFilter::class)
  */

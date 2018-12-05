@@ -1,4 +1,9 @@
 App\Entity\Car:
+  user:
+    uuid: 'test'
+    roles: '["ROLE_USER"]'
+
+App\Entity\Car:
   car_{1..100}:
     brand: '<company()>'
     model: '<company()>'
